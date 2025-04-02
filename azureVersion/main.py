@@ -1,11 +1,14 @@
 # https://learn.microsoft.com/en-us/azure/ai-services/agents/quickstart?pivots=programming-language-python-azure
 # https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/samples/agents/sample_agents_run_with_toolset.py
+# must be in azureVersion directory
 from dotenv import load_dotenv
 import os
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects.models import FilePurpose, FileSearchTool
-from clean_sql import clean_sql
+from clean_sql import clean
+from run_sqlite3 import run_sql_query
+from produce_chart import draw_chart
 
 load_dotenv()
 
@@ -63,13 +66,16 @@ with open('sql_to_use.txt', 'w') as f:
 # test the sql (agent)
 # not yet implemented
 
-clean_sql()
+clean()
 
 # run the sql (local)
+with open('sql_cleaned.txt', 'r') as f:
+    sql_query = f.read()
+db_path = 'database/contoso-sales.db'
+run_sql_query(db_path, sql_query)
 
-
-# get a result, send result to agent
-# agent to produce graph
+# get results and agent will produce graph
+draw_chart()
 
 project_client.agents.delete_thread(thread_id=thread.id)
 project_client.agents.delete_vector_store(vector_store.id)
