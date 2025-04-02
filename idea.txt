@@ -1,0 +1,18 @@
+Provide schema (schema_data.csv) to llm
+
+
+ask llm to produce query
+setup a function to query the db from the llm
+llm gets data
+take data and send to llm agent to produce python code for the graph
+
+
+Currently
+---------------------
+main.py
+will read the sql db to get a schema, tables and data and output these into csv
+
+graph.py
+uses hardcoded data at the mo and will produce a png of it
+
+#https://github.com/openai/openai-python

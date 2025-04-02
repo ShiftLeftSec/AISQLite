@@ -1,0 +1,11 @@
+0, id, INTEGER, 0, None, 1
+1, main_category, TEXT, 0, None, 0
+2, product_type, TEXT, 0, None, 0
+3, revenue, REAL, 0, None, 0
+4, shipping_cost, REAL, 0, None, 0
+5, number_of_orders, INTEGER, 0, None, 0
+6, year, INTEGER, 0, None, 0
+7, month, INTEGER, 0, None, 0
+8, discount, INTEGER, 0, None, 0
+9, region, TEXT, 0, None, 0
+10, month_date, TEXT, 0, None, 0
