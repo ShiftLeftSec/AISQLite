@@ -1,0 +1,5 @@
+There are two parts to this repo - the openai part and the azure part, the azure part is more developed. 
+
+The azure repo takes a NLP request and produces SQL from it. The SQL is then run locally over an sqlite3 db and th results are sent to llm for generation into a graph by an agent
+
+To get this running, need a openai service in azure and a azure ai project in foundry setup

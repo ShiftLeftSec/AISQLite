@@ -12,6 +12,8 @@ from produce_chart import draw_chart
 
 load_dotenv()
 
+request = input("What do you want to know about the database? ")
+
 CONNECTION_STRING = os.getenv("PROJECT_CONNECTION_STRING")
 
 INSTRUCTIONS = ""
@@ -45,7 +47,7 @@ thread = project_client.agents.create_thread()
 message = project_client.agents.create_message(
     thread_id=thread.id,
     role="user",
-    content="get me the sql for sales by product"
+    content=request,
 )
 # print(message.id)
 
