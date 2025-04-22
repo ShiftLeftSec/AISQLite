@@ -67,6 +67,5 @@ if last_msg:
     last_msg.text.value = last_msg.text.value.replace("```", "")
     print(f"{last_msg.text.value}")
     f = open("updated_zap.yaml", "w")
-    f.write(last_msg.text.value)
-    
+    f.write(last_msg.text.value)    
     f.close()
