@@ -3,9 +3,9 @@ env:
   contexts:
   - name: Default Context
     urls:
-    - a.co.uk
+    - https://public-firing-range.appspot.com/
     includePaths:
-    - a.co.uk.*
+    - https://public-firing-range.appspot.com.*
     authentication:
       verification:
         method: response
@@ -46,4 +46,4 @@ jobs:
   parameters:
     template: risk-confidence-html
     reportTitle: htmlReport
-    reportDescription: "a scan of a.co.uk"
+    reportDescription: "a scan of https://public-firing-range.appspot.com/"
