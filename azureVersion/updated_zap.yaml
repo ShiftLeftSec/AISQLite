@@ -1,0 +1,49 @@
+
+env:
+  contexts:
+  - name: Default Context
+    urls:
+    - a.co.uk
+    includePaths:
+    - a.co.uk.*
+    authentication:
+      verification:
+        method: response
+        pollFrequency: 60
+        pollUnits: requests
+        pollUrl: ""
+        pollPostData: ""
+    sessionManagement:
+      method: cookie
+    technology: {}
+    structure: {}
+  parameters: {}
+jobs:
+- type: passiveScan-config
+  parameters: {}
+- type: spider
+  parameters: {}
+  tests:
+  - name: At least 100 URLs found
+    type: stats
+    onFail: INFO
+    statistic: automation.spider.urls.added
+    operator: '>='
+    value: 100
+- type: spiderAjax
+  parameters: {}
+  tests:
+  - name: At least 100 URLs found
+    type: stats
+    onFail: INFO
+    statistic: spiderAjax.urls.added
+    operator: '>='
+    value: 100
+- type: passiveScan-wait
+  parameters:
+    maxDuration: 3
+- type: report
+  parameters:
+    template: risk-confidence-html
+    reportTitle: htmlReport
+    reportDescription: "a scan of a.co.uk"
