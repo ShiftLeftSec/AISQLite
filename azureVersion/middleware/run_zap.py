@@ -2,9 +2,10 @@ import subprocess
 import os
 
 def startzap():
+    print (os.getcwd())
     command = [
         "docker", "run",
-        "-v", f"{os.getcwd() + '/output'}:/zap/wrk/:rw",
+        "-v", f"{os.getcwd() + '/azureVersion/output'}:/zap/wrk/:rw",
         "-t", "zaproxy/zap-stable",
         "zap.sh", "-cmd", "-autorun", "/zap/wrk/updated_zap.yaml"
     ]

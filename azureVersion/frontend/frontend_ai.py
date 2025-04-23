@@ -19,7 +19,7 @@ def frontend():
     BING_CONNECTION_NAME = os.getenv("BING_CONNECTION_NAME")
 
     INSTRUCTIONS = ""
-    with open('instructions/GET_YAML_INSTRUCTIONS.txt', 'r') as file:
+    with open('azureVersion/instructions/GET_YAML_INSTRUCTIONS.txt', 'r') as file:
             INSTRUCTIONS = file.read()
 
     project_client = AIProjectClient.from_connection_string(
@@ -68,6 +68,6 @@ def frontend():
         last_msg.text.value = last_msg.text.value.replace("```yaml", "")
         last_msg.text.value = last_msg.text.value.replace("```", "")
         print(f"{last_msg.text.value}")
-        f = open("output/updated_zap.yaml", "w")
+        f = open("azureVersion/output/updated_zap.yaml", "w")
         f.write(last_msg.text.value)    
         f.close()

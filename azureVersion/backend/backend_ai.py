@@ -17,14 +17,14 @@ def query_and_graph():
     CONNECTION_STRING = os.getenv("PROJECT_CONNECTION_STRING")
 
     INSTRUCTIONS = ""
-    with open('../instructions/SQL_CREATION_INSTRUCTIONS.txt', 'r') as file:
+    with open('azureVersion/instructions/SQL_CREATION_INSTRUCTIONS.txt', 'r') as file:
             INSTRUCTIONS = file.read()
 
     project_client = AIProjectClient.from_connection_string(
         credential=DefaultAzureCredential(),
         conn_str=CONNECTION_STRING
     )
-    file = project_client.agents.upload_file_and_poll(file_path='zap_alerts_schema.json', purpose=FilePurpose.AGENTS)
+    file = project_client.agents.upload_file_and_poll(file_path='azureVersion/backend/zap_alerts_schema.json', purpose=FilePurpose.AGENTS)
     # print(f"Uploaded file, file ID: {file.id}")
     vector_store = project_client.agents.create_vector_store_and_poll(file_ids=[file.id], name="my_vectorstore")
     # print(f"Created vector store, vector store ID: {vector_store.id}")
