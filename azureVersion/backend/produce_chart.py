@@ -1,26 +1,28 @@
 import os
+import json
 from dotenv import load_dotenv
 from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import CodeInterpreterTool
 from azure.identity import DefaultAzureCredential
 from pathlib import Path
 
-def draw_chart():
+def draw_chart(sql_resultset):
+    
     load_dotenv()
 
-    SQL_data = """
-    ('WINTER BOOTS', 1004452.0)
-    ('SKI BINDINGS', 931793.0)
-    ('BOULDERING PADS', 905532.0)
-    ('JACKETS & VESTS', 864769.0)
-    ('BACKPACKING TENTS', 769345.0)
-    ('TRAIL SHOES', 754487.0)
-    ('RODS & REELS', 727039.0)
-    ('GOGGLES', 703475.0)
-    ('EXTENDED TRIP PACKS', 689762.0)
-    ('ACCESSORIES', 662600.0)
-    ('ROPES & SLINGS', 652183.0)
-    ('CRAMPONS', 649392.0)"""
+    # sql_resultset = """
+    # ('WINTER BOOTS', 1004452.0)
+    # ('SKI BINDINGS', 931793.0)
+    # ('BOULDERING PADS', 905532.0)
+    # ('JACKETS & VESTS', 864769.0)
+    # ('BACKPACKING TENTS', 769345.0)
+    # ('TRAIL SHOES', 754487.0)
+    # ('RODS & REELS', 727039.0)
+    # ('GOGGLES', 703475.0)
+    # ('EXTENDED TRIP PACKS', 689762.0)
+    # ('ACCESSORIES', 662600.0)
+    # ('ROPES & SLINGS', 652183.0)
+    # ('CRAMPONS', 649392.0)"""
 
     PROJECT_CONNECTION_STRING = os.getenv("PROJECT_CONNECTION_STRING")
 
@@ -43,12 +45,14 @@ def draw_chart():
         # Create a thread
         thread = project_client.agents.create_thread()
         # print(f"Created thread, thread ID: {thread.id}")
-
+        
+        sql_resultset_string = json.dumps(sql_resultset)
+        
         # Create a message
         message = project_client.agents.create_message(
             thread_id=thread.id,
             role="user",
-            content=SQL_data,
+            content=sql_resultset_string,
         )
         run = project_client.agents.create_and_process_run(thread_id=thread.id, assistant_id=agent.id)
         messages = project_client.agents.list_messages(thread_id=thread.id)

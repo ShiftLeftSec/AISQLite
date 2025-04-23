@@ -1,0 +1,30 @@
+{
+    "table_name": "alerts",
+    "columns": [
+      {
+        "name": "ID",
+        "type": "INTEGER",
+        "constraints": ["PRIMARY KEY", "AUTOINCREMENT"]
+      },
+      {
+        "name": "site_name",
+        "type": "VARCHAR(500)",
+        "constraints": ["NOT NULL"]
+      },
+      {
+        "name": "alerts",
+        "type": "VARCHAR(500)",
+        "constraints": ["NOT NULL"]
+      },
+      {
+        "name": "riskcode",
+        "type": "VARCHAR(500)",
+        "constraints": ["NOT NULL"]
+      },
+      {
+        "name": "affected_url",
+        "type": "VARCHAR(500)",
+        "constraints": ["NOT NULL"]
+      }
+    ]
+  }

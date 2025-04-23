@@ -57,6 +57,10 @@ jobs:
 - type: report
   parameters:
     template: risk-confidence-html
-    reportTitle: htmlReport
+    reportTitle: report
     reportDescription: "a scan of site"
-
+- type: report
+  parameters:
+    template: traditional-xml
+    reportTitle: report
+    reportDescription: "a scan of site"

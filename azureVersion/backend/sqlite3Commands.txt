@@ -1,0 +1,17 @@
+create db
+sqlite3 zapdb
+
+list db's
+sqlite> .databases
+
+list tables
+.tables
+
+dump db
+zapdb.db .dump > zapdb.sql
+
+create a table
+create table test_table(name text not null);
+
+dump table schema
+sqlite3 zap.db '.schema alerts' > zap_alerts.schema.sql

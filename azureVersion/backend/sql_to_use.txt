@@ -1,4 +1,2 @@
-```sql
-SELECT SUM(revenue) AS Total_Sales
-FROM sales_data;
-```
+
+SELECT COUNT(*) as Total_Alerts FROM alerts;

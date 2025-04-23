@@ -1,2 +1,0 @@
-SELECT SUM(revenue) AS Total_Sales
-FROM sales_data;

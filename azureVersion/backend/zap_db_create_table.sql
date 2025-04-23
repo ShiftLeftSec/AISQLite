@@ -1,0 +1,7 @@
+create table alerts(
+ID INTEGER PRIMARY KEY AUTOINCREMENT
+site_name VARCHAR(500) NOT NULL,
+alerts VARCHAR(500) NOT NULL,
+riskcode VARCHAR(500) NOT NULL,
+affected_url VARCHAR(500) NOT NULL
+);

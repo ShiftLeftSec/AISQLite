@@ -3,7 +3,7 @@ env:
   contexts:
   - name: Default Context
     urls:
-    - https://public-firing-range.appspot.com/
+    - https://public-firing-range.appspot.com
     includePaths:
     - https://public-firing-range.appspot.com.*
     authentication:
@@ -30,25 +30,25 @@ jobs:
     statistic: automation.spider.urls.added
     operator: '>='
     value: 100
-# - type: spiderAjax
-#   parameters: {}
-#   tests:
-#   - name: At least 100 URLs found
-#     type: stats
-#     onFail: INFO
-#     statistic: spiderAjax.urls.added
-#     operator: '>='
-#     value: 100
+- type: spiderAjax
+  parameters: {}
+  tests:
+  - name: At least 100 URLs found
+    type: stats
+    onFail: INFO
+    statistic: spiderAjax.urls.added
+    operator: '>='
+    value: 100
 - type: passiveScan-wait
   parameters:
-    maxDuration: 3
+    maxDuration: 2
 - type: report
   parameters:
     template: risk-confidence-html
-    reportTitle: htmlReport
-    reportDescription: "a scan of a.co.uk"
+    reportTitle: report
+    reportDescription: "a scan of https://public-firing-range.appspot.com"
 - type: report
   parameters:
     template: traditional-xml
-    reportTitle: xmlReport
-    reportDescription: "https://public-firing-range.appspot.com/"
+    reportTitle: report
+    reportDescription: "a scan of https://public-firing-range.appspot.com"

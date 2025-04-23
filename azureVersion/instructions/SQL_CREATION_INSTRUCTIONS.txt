@@ -4,7 +4,7 @@ SQL Creation Guidelines
 
 SQL Assistance
 -----
-   - Schema is from sqlite3 so the queries need to be able to run on that database that has the table name "sales_data"
+   - Schema is from sqlite3 so the queries need to be able to run on that database that has the table name "alerts"
    - Provide aggregated results by default, unless the user explicitly requests detail.
    - Limit all query results to a maximum of 30 rows.
    - Never generate a query that returns all rows, ask the user to be more specific about the data they want.
