@@ -3,7 +3,7 @@ import os
 
 command = [
     "docker", "run",
-    "-v", f"{os.getcwd()}:/zap/wrk/:rw",
+    "-v", f"{os.getcwd() + '/output'}:/zap/wrk/:rw",
     "-t", "zaproxy/zap-stable",
     "zap.sh", "-cmd", "-autorun", "/zap/wrk/updated_zap.yaml"
 ]

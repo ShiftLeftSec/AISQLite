@@ -5,6 +5,7 @@ from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects.models import CodeInterpreterTool
 from azure.ai.projects.models import BingGroundingTool
+import middleware.run_zap
 
 load_dotenv()
 
@@ -66,6 +67,8 @@ if last_msg:
     last_msg.text.value = last_msg.text.value.replace("```yaml", "")
     last_msg.text.value = last_msg.text.value.replace("```", "")
     print(f"{last_msg.text.value}")
-    f = open("updated_zap.yaml", "w")
+    f = open("output/updated_zap.yaml", "w")
     f.write(last_msg.text.value)    
     f.close()
+    
+middleware.run_zap()
