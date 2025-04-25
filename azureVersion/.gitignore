@@ -2,3 +2,5 @@
 __pycache__
 *.db
 *.env
+report.xml
+updated_zap.yaml
