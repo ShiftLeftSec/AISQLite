@@ -1,5 +1,5 @@
 
-SELECT alerts, COUNT(*) as count 
-FROM alerts 
-GROUP BY alerts 
+SELECT COUNT(*) AS total_session_management_issues
+FROM alerts
+WHERE alerts LIKE '%Session Management%'
 LIMIT 30;
