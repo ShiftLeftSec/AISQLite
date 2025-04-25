@@ -6,7 +6,7 @@ from azure.ai.projects.models import CodeInterpreterTool
 from azure.identity import DefaultAzureCredential
 from pathlib import Path
 
-def draw_chart(sql_resultset):
+def draw_chart(request, sql_resultset):
     
     load_dotenv()
 
@@ -36,17 +36,18 @@ def draw_chart(sql_resultset):
         agent = project_client.agents.create_agent(
             model="gpt-4",
             name="my-agent",
-            instructions="You take the results of an sqlite3 database query provided by the user and create bar chart for the data provided by the user. {SQL_data}",
+            instructions="You take the results of an natural language sqlite3 database query provided by the user {request} and create a bar chart for the data provided by the user. {sql_resultset}, it doesn't matter if only one value is returned, still display a bar chart.",
             tools=code_interpreter.definitions,
             tool_resources=code_interpreter.resources,
         )
-        # print(f"Created agent, agent ID: {agent.id}")
+        print(f"Created agent, agent ID: {agent.id}")
 
         # Create a thread
         thread = project_client.agents.create_thread()
-        # print(f"Created thread, thread ID: {thread.id}")
+        print(f"Created thread, thread ID: {thread.id}")
         
-        sql_resultset_string = json.dumps(sql_resultset)
+        sql_resultset_string = json.dumps(request) + ":" + json.dumps(sql_resultset)
+        print (sql_resultset_string)
         
         # Create a message
         message = project_client.agents.create_message(
@@ -56,7 +57,7 @@ def draw_chart(sql_resultset):
         )
         run = project_client.agents.create_and_process_run(thread_id=thread.id, assistant_id=agent.id)
         messages = project_client.agents.list_messages(thread_id=thread.id)
-        # print(f"Messages: {messages}")
+        print(f"Messages: {messages}")
         # last_msg = messages.get_last_text_message_by_role("assistant")
         # if last_msg:
             # print(f"Last Message: {last_msg.text.value}")
@@ -69,12 +70,12 @@ def draw_chart(sql_resultset):
 
 
         for file_path_annotation in messages.file_path_annotations:
-            # print(f"File Paths:")
-            # print(f"Type: {file_path_annotation.type}")
-            # print(f"Text: {file_path_annotation.text}")
-            # print(f"File ID: {file_path_annotation.file_path.file_id}")
-            # print(f"Start Index: {file_path_annotation.start_index}")
-            # print(f"End Index: {file_path_annotation.end_index}")
+            print(f"File Paths:")
+            print(f"Type: {file_path_annotation.type}")
+            print(f"Text: {file_path_annotation.text}")
+            print(f"File ID: {file_path_annotation.file_path.file_id}")
+            print(f"Start Index: {file_path_annotation.start_index}")
+            print(f"End Index: {file_path_annotation.end_index}")
             project_client.agents.save_file(file_id=file_path_annotation.file_path.file_id, file_name=Path(file_path_annotation.text).name)
 
         # Delete the agent once done

@@ -24,7 +24,7 @@ def query_and_graph():
         credential=DefaultAzureCredential(),
         conn_str=CONNECTION_STRING
     )
-    file = project_client.agents.upload_file_and_poll(file_path='azureVersion/backend/zap_alerts_schema.json', purpose=FilePurpose.AGENTS)
+    file = project_client.agents.upload_file_and_poll(file_path=os.getcwd() + '/azureVersion/backend/zap_alerts_schema.json', purpose=FilePurpose.AGENTS)
     # print(f"Uploaded file, file ID: {file.id}")
     vector_store = project_client.agents.create_vector_store_and_poll(file_ids=[file.id], name="my_vectorstore")
     # print(f"Created vector store, vector store ID: {vector_store.id}")
@@ -63,19 +63,21 @@ def query_and_graph():
         last_msg.text.value = last_msg.text.value.replace("```", "")
         print(f"{last_msg.text.value}")
 
-    with open('sql_to_use.txt', 'w') as f:
+    with open(os.getcwd() + '/azureVersion/backend/sql_to_use.txt', 'w') as f:
         f.write(last_msg.text.value)
 
     # test the sql (agent)
     # not yet implemented
 
     # run the sql (local)
-    with open('sql_to_use.txt', 'r') as f:
+    with open(os.getcwd() + '/azureVersion/backend/sql_to_use.txt', 'r') as f:
         sql_query = f.read()
-    db_path = 'zap.db'
+    print(os.getcwd())
+    db_path = os.getcwd() + '/azureVersion/backend/zap.db'
+    print(db_path)
     sql_resultset = run_sql_query(db_path, sql_query)
     # get results and agent will produce graph
-    draw_chart(sql_resultset)
+    draw_chart(request, sql_resultset)
 
     project_client.agents.delete_thread(thread_id=thread.id)
     project_client.agents.delete_vector_store(vector_store.id)

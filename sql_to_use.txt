@@ -1,2 +1,6 @@
 
-SELECT COUNT(*) AS Total_Alerts FROM alerts;
+SELECT alert_type, COUNT(*) AS count
+FROM alerts
+GROUP BY alert_type
+ORDER BY count DESC
+LIMIT 30;
