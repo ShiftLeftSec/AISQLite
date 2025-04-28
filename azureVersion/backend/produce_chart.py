@@ -70,12 +70,12 @@ def draw_chart(request, sql_resultset):
 
 
         for file_path_annotation in messages.file_path_annotations:
-            print(f"File Paths:")
-            print(f"Type: {file_path_annotation.type}")
-            print(f"Text: {file_path_annotation.text}")
-            print(f"File ID: {file_path_annotation.file_path.file_id}")
-            print(f"Start Index: {file_path_annotation.start_index}")
-            print(f"End Index: {file_path_annotation.end_index}")
+            # print(f"File Paths:")
+            # print(f"Type: {file_path_annotation.type}")
+            # print(f"Text: {file_path_annotation.text}")
+            # print(f"File ID: {file_path_annotation.file_path.file_id}")
+            # print(f"Start Index: {file_path_annotation.start_index}")
+            # print(f"End Index: {file_path_annotation.end_index}")
             project_client.agents.save_file(file_id=file_path_annotation.file_path.file_id, file_name=Path(file_path_annotation.text).name)
 
         # Delete the agent once done

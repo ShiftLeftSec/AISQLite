@@ -72,9 +72,9 @@ def query_and_graph():
     # run the sql (local)
     with open(os.getcwd() + '/azureVersion/backend/sql_to_use.txt', 'r') as f:
         sql_query = f.read()
-    print(os.getcwd())
+    # print(os.getcwd())
     db_path = os.getcwd() + '/azureVersion/backend/zap.db'
-    print(db_path)
+    # print(db_path)
     sql_resultset = run_sql_query(db_path, sql_query)
     # get results and agent will produce graph
     draw_chart(request, sql_resultset)

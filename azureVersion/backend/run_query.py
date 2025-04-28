@@ -10,7 +10,7 @@ def run_sql_query(db_path, query):
         # for row in results:
         #     print(row)
         conn.close()
-        print(results)
+        # print(results)
         return results
     except sqlite3.Error as e:
         print(f"An error occurred: {e}")
