@@ -1,4 +1,5 @@
 # AISQLite
+I think this might have some work from an MS AI TOUR day, that I then used to make my own "thing"
 
 An intelligent security analysis system that combines OWASP ZAP security scanning, SQLite data management, and Azure AI agents to provide natural language querying and automated reporting of security vulnerabilities.
 
